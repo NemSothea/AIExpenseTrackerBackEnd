@@ -69,7 +69,7 @@ AI Expense Tracker is an intelligent expense management application that uses ar
 - Run the application: mvn spring-boot:run
 
 ### Database Setup
-- Create a PostgreSQL database named `aiexpensdb`
+- Create a PostgreSQL database named `aiexpensedb`
 
 - Create a tales
 ```
