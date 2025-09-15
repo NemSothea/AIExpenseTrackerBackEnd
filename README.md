@@ -98,7 +98,7 @@ CREATE TABLE users (
 #### Prerequisites
 
 #### Authentication Endpoints
-- POST /api/user/login  - User login
+- POST /api/user/login  - User login <br/>
 http://localhost:8080/api/user/login
 ```
 {
@@ -109,11 +109,11 @@ http://localhost:8080/api/user/login
     eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MDQiLCJpYXQiOjE3NTc3MzczOTQsImV4cCI6MTc1NzczNzYxMH0.14uQwstIFO5uBHf9ppQbCKLij_OGYccSZ6KPxzLnlyQ
 }
   ```
-  - GET : /api/user/{id}
+  - GET : /api/user/{id}<br/>
 http://localhost:8080/api/user/4
 ```
 {
-    
+    // Empty Json
 }
 {
     "id": 4,
@@ -124,9 +124,10 @@ http://localhost:8080/api/user/4
 }
   ```
 
-- POST /api/register 
+- POST /api/register <br/>
  http://localhost:8080/api/user/register
-```{
+```
+{
     "email": "123@gmail.com",
     "isActive":true,
     "password": "123@qwer",
@@ -141,7 +142,7 @@ http://localhost:8080/api/user/4
 
 } 
 ```
-- POST /api/user/google - Google OAuth authentication
+- POST /api/user/google - Google OAuth authentication <br/>
 - User logout
 
 #### Expense Endpoints
@@ -193,7 +194,14 @@ http://localhost:8080/api/user/4
 ### To Start OPEN AI Platform:
 1) https://platform.openai.com/settings/organization/api-keys
 
+### To Start AI Expense Tracker Mobile:
+1) https://github.com/NemSothea/AI-Expense-Tracker
 
+### To Start AI Expense Tracker BackEnd Server:
+1) https://github.com/NemSothea/AIExpenseTrackerBackEnd
+
+### To Start AI Expense Tracker Frontend Web:
+1) https://github.com/NemSothea/AIExpenseTrackerFrontend
 
 
 ### git Tip 
