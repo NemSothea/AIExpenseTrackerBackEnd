@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.controller;
+package com.aiexpense.trackerbackend.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

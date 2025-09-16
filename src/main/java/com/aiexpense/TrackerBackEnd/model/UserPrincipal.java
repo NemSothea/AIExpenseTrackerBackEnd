@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.model;
+package com.aiexpense.trackerbackend.model;
 
 import java.util.Collection;
 import java.util.Collections;

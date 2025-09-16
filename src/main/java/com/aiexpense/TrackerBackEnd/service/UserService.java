@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.service;
+package com.aiexpense.trackerbackend.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.aiexpense.TrackerBackEnd.model.Users;
-import com.aiexpense.TrackerBackEnd.repo.UserRepository;
+import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.repo.UserRepository;
 
 @Service
 public class UserService {
@@ -40,7 +40,7 @@ public class UserService {
             return jwtService.generateToken(user.getUsername());
         return "Fail";
     }
-     // New methods for getting users
+    
     public List<Users> getAllUsers() {
         return userRepository.findAll();
     }

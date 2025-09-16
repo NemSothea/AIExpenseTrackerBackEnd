@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.model;
+package com.aiexpense.trackerbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

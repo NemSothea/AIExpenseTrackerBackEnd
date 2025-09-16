@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.config;
+package com.aiexpense.trackerbackend.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class SecurityConfig {
         return http.csrf(auth -> auth.disable())
                 .authorizeHttpRequests(auth -> auth
                 /*Skip for register and login */
-                .requestMatchers("/api/user/register","/api/user/login")
+                .requestMatchers("/api/user/register","/api/user/login","/api/users")
                 .permitAll()
                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())

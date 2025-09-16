@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.service;
+package com.aiexpense.trackerbackend.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.aiexpense.TrackerBackEnd.model.UserPrincipal;
-import com.aiexpense.TrackerBackEnd.model.Users;
-import com.aiexpense.TrackerBackEnd.repo.UserRepository;
+import com.aiexpense.trackerbackend.model.UserPrincipal;
+import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.repo.UserRepository;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {

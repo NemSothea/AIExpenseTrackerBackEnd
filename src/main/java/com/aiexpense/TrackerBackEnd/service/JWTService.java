@@ -1,4 +1,4 @@
-package com.aiexpense.TrackerBackEnd.service;
+package com.aiexpense.trackerbackend.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
