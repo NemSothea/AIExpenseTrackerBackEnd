@@ -1,6 +1,29 @@
 -- Insert sample categories
-INSERT INTO categories (name, description) VALUES
-('Travel', 'Flight tickets, hotel stays, transportation'),
-('Food', 'Meals, snacks, beverages'),
-('Office', 'Office supplies and equipment'),
-('Entertainment', 'Client entertainment, team activities');
+INSERT INTO categories (name)
+VALUES
+  ('Drink'),
+  ('Accounting and legal fees'),
+  ('Bank fees'),
+  ('Consultants and professional services'),
+  ('Depreciation'),
+  ('Employee benefits'),
+  ('Employee expenses'),
+  ('Entertainment'),
+  ('Food'),
+  ('Gifts'),
+  ('Health'),
+  ('Insurance'),
+  ('Interest'),
+  ('Learning'),
+  ('Licensing fees'),
+  ('Marketing'),
+  ('Membership fees'),
+  ('Office supplies'),
+  ('Payroll'),
+  ('Repairs'),
+  ('Rent'),
+  ('Rent or mortgage payments'),
+  ('Software'),
+  ('Tax'),
+  ('Travel'),
+  ('Utilities');

@@ -1,7 +1,7 @@
 -- 1. Get all expenses with user and category info:
 SELECT 
     e.id,
-    u.username,
+    u.name,
     c.name as category,
     e.amount,
     e.description,
@@ -10,19 +10,19 @@ SELECT
 FROM expenses e
 JOIN users u ON e.user_id = u.id
 JOIN categories c ON e.category_id = c.id
-WHERE e.isactive = true
+WHERE e.enabled = true
 ORDER BY e.expense_date DESC;
 
 -- 2. Get total expenses by user:
 
 SELECT 
-    u.username,
+    u.name,
     COUNT(e.id) as total_expenses,
     SUM(e.amount) as total_amount
 FROM users u
-LEFT JOIN expenses e ON u.id = e.user_id AND e.isactive = true
-WHERE u.isactive = true
-GROUP BY u.id, u.username
+LEFT JOIN expenses e ON u.id = e.user_id AND e.enabled = true
+WHERE u.enabled = true
+GROUP BY u.id, u.name
 ORDER BY total_amount DESC;
 
 -- 3. Get expenses by category:
@@ -31,7 +31,7 @@ SELECT
     COUNT(e.id) as expense_count,
     SUM(e.amount) as total_amount
 FROM categories c
-LEFT JOIN expenses e ON c.id = e.category_id AND e.isactive = true
-WHERE c.isactive = true
+LEFT JOIN expenses e ON c.id = e.category_id AND e.enabled = true
+WHERE c.enabled = true
 GROUP BY c.id, c.name
 ORDER BY total_amount DESC;

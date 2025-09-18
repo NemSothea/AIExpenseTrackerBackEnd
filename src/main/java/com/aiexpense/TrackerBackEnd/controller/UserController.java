@@ -1,47 +1,100 @@
 package com.aiexpense.trackerbackend.controller;
 
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpStatus;
 import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.service.JwtService;
 import com.aiexpense.trackerbackend.service.UserService;
 
-@RestController
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins = "*")
+@Tag(name = "User Authentication", description = "APIs for User Signup, Login, and Role-Based Dashboards")
 public class UserController {
 
     @Autowired
-    private UserService service;
-    // Get all categories
+    private UserService userService;
 
-    @GetMapping("/api/users")
-    public List<Users> getAllUsers() {
-        return service.getAllUsers();
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Operation(summary = "Register a new user", description = "Allows users to sign up with their details")
+    @PostMapping("/signup")
+    public ResponseEntity<String> registerUser(@Valid @RequestBody Users user) throws Exception {
+        if (!user.isEnabled()) { // Assuming `enabled` is a boolean field in the Users class
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Please agree to the terms and conditions");
+        }
+        userService.register(user);
+        return ResponseEntity.ok("User registered successfully!");
     }
-    // Get user by ID
-    @GetMapping("/api/user/{id}")
-    public Optional<Users> getUserById(@PathVariable Integer id) {
-        return service.getUserById(id);
+
+    @Operation(summary = "Login user", description = "Authenticate user and return a JWT token")
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody Users loginUser) {
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(loginUser.getEmail(), loginUser.getPassword()));
+
+        if (authentication.isAuthenticated()) {
+            String token = jwtService.generateToken(loginUser.getEmail());
+            return ResponseEntity.ok(token); // Return the token to the client
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+        }
     }
 
-    @PostMapping("/api/user/register")
-    public Users register(@RequestBody Users user) {
-        return service.register(user);
+    @Operation(summary = "Admin Dashboard", description = "Accessible only to users with the ADMIN role")
+    @GetMapping("/admin/dashboard")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> adminDashboard() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = getUsername(authentication);
+        return ResponseEntity.ok("Welcome to the Admin Dashboard, " + username);
     }
 
-    @PostMapping("/api/user/login")
-    public String login(@RequestBody Users user) {
-        System.out.println(user);
-        // return "Success";
-        return service.vertify(user);
+    @Operation(summary = "Customer Dashboard", description = "Accessible only to users with the CUSTOMER role")
+    @GetMapping("/customer/dashboard")
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public ResponseEntity<String> customerDashboard() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = getUsername(authentication);
+        return ResponseEntity.ok("Welcome to the Customer Dashboard, " + username);
+    }
 
+    private String getUsername(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "Unknown User";
+        }
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+        return principal.toString();
     }
 
 }

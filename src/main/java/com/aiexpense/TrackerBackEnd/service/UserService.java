@@ -1,53 +1,67 @@
 package com.aiexpense.trackerbackend.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import org.apache.hc.client5.http.auth.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.aiexpense.trackerbackend.exception.UserNotFoundException;
 import com.aiexpense.trackerbackend.model.Users;
 import com.aiexpense.trackerbackend.repo.UserRepository;
+import java.util.logging.Logger;
 
 @Service
 public class UserService {
 
+    private static final Logger logger = Logger.getLogger(UserService.class.getName());
     @Autowired
-      private UserRepository userRepository;
-
+    private UserRepository userRepository;
     @Autowired
-    private JWTService jwtService;
+    private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    AuthenticationManager authManager;
+    // Registers a new user by validating email and password, then saves the user to
+    // the repository
+    public void register(Users user) {
+        logger.info("Attempting to register user with email: " + user.getEmail());
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        // Sets a default role of "ROLE_CUSTOMER" if no role is provided
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("ROLE_CUSTOMER");
+        }
 
-    public Users register(Users user) {
-        user.setPassword(encoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        // Checks if the email is already in use, and throws an exception if it is
+        if (userRepository.existsByEmail(user.getEmail())) {
+            logger.warning("Email already in use: " + user.getEmail());
+            throw new RuntimeException("Email is already in use. Please use a different email.");
+        }
+
+        // Encodes the user's password before saving to ensure it's stored securely
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        logger.info("User successfully registered with email: " + user.getEmail());
     }
 
-    public String vertify(Users user) {
-        // return "Login successful";
-        Authentication authenticated = authManager
-                .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-        if (authenticated.isAuthenticated())
-            return jwtService.generateToken(user.getUsername());
-        return "Fail";
-    }
-    
-    public List<Users> getAllUsers() {
-        return userRepository.findAll();
+    // Handles user login, checking if the email exists and the password matches
+    public Users login(String email, String password) throws UserNotFoundException, InvalidCredentialsException {
+        logger.info("Attempting to login user with email: " + email);
+
+        // Fetches the user by email from the database
+        Users user = userRepository.getUserByEmail(email);
+        if (user == null) {
+            logger.warning("Email not found: " + email);
+            throw new UserNotFoundException("Invalid email or password.");
+        }
+
+        // Checks if the provided password matches the encoded password
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            logger.warning("Invalid password for email: " + email);
+            throw new InvalidCredentialsException("Invalid email or password.");
+        }
+
+        logger.info("User successfully logged in with email: " + email);
+        return user;
     }
 
-    public Optional<Users> getUserById(Integer id) {
-        return userRepository.findById(id);
-    }
-
-   
 }
