@@ -10,30 +10,17 @@ import jakarta.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.security.web.SecurityFilterChain;
+
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import org.springframework.stereotype.Component;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Arrays;
 import java.io.IOException;
 
 @Component
@@ -58,9 +45,9 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
         String email = oauth2User.getAttribute("email");
         String name = oauth2User.getAttribute("name");
-        String contactNumber = oauth2User.getAttribute("contactNumber");
+        String contact = oauth2User.getAttribute("contact");
 
-        logger.debug("Extracted user details: email={}, name={}, contactNumber={}", email, name, contactNumber);
+        logger.debug("Extracted user details: email={}, name={}, contact={}", email, name, contact);
 
         // Find or create user
         Users user = userRepository.findByEmail(email)
@@ -70,7 +57,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                     Users newUser = new Users();
                     newUser.setEmail(email);
                     newUser.setName(name);
-                    newUser.setContactNumber(contactNumber);
+                    newUser.setContact(contact);
                     newUser.setRole("ROLE_CUSTOMER"); // Default role
                     newUser.setEnabled(true);
 

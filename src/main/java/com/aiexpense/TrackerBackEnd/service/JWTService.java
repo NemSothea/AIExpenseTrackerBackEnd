@@ -9,6 +9,7 @@ import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class JwtService {
 
     @Autowired
     private UserRepository userRepo;
+  
     private String secretKey;
 
     public JwtService() {

@@ -33,8 +33,8 @@ public class CategoryService {
     // Create new category
     public Category createCategory(Category category) {
         // Set default active status if not provided
-        if (category.getIsActive() == null) {
-            category.setIsActive(true);
+        if (category.getEnabled() == null) {
+            category.setEnabled(true);
         }
         return categoryRepository.save(category); // Uses save() from JpaRepository
     }
@@ -50,8 +50,8 @@ public class CategoryService {
                     if (categoryDetails.getDescription() != null) {
                         existingCategory.setDescription(categoryDetails.getDescription());
                     }
-                    if (categoryDetails.getIsActive() != null) {
-                        existingCategory.setIsActive(categoryDetails.getIsActive());
+                    if (categoryDetails.getEnabled() != null) {
+                        existingCategory.setEnabled(categoryDetails.getEnabled());
                     }
                     return categoryRepository.save(existingCategory); // Uses save() from JpaRepository
                 })
@@ -70,7 +70,7 @@ public class CategoryService {
     public void softDeleteCategory(Integer id) {
         categoryRepository.findById(id)
                 .ifPresent(category -> {
-                    category.setIsActive(false);
+                    category.setEnabled(false);
                     categoryRepository.save(category); // Uses save() from JpaRepository
                 });
     }
@@ -78,7 +78,7 @@ public class CategoryService {
     // Get only active categories
     public List<Category> getActiveCategories() {
         return getAllCategories().stream()
-                .filter(Category::getIsActive)
+                .filter(Category::getEnabled)
                 .toList();
     }
 

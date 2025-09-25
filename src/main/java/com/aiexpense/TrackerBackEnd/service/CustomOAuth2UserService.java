@@ -31,7 +31,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // Extract user details from OAuth2 provider
         String email = oauth2User.getAttribute("email");
         String name = oauth2User.getAttribute("name");
-        String contactNumber = oauth2User.getAttribute("contactNumber");
+        String contact = oauth2User.getAttribute("contact");
 
         logger.info("User details retrieved from OAuth2 provider: Email=" + email + ", Name=" + name);
 
@@ -45,7 +45,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 Users newUser = new Users();
                 newUser.setEmail(email);
                 newUser.setName(name);
-                newUser.setContactNumber(contactNumber);
+                newUser.setContact(contact);
                 newUser.setRole("ROLE_CUSTOMER"); // Default role
                 newUser.setEnabled(true);
 

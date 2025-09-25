@@ -23,7 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.aiexpense.trackerbackend.service.CustomOAuth2UserService;
 import com.aiexpense.trackerbackend.service.CustomUserDetailsService;
 
-
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -81,15 +80,59 @@ public class SecurityConfig {
                 })
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/signup", "/auth/login", "/login/oauth2", "/error",
-                                "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/auth/admin/**", "/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/auth/customer/**", "/customer/**").hasRole("CUSTOMER")
+
+                        // .requestMatchers(
+                        // "/",
+                        // "/auth/signup",
+                        // "/auth/login",
+                        // "/login/oauth2",
+                        // "/error",
+                        // "/api/expenses/**",
+                        // "/api/categories/**",
+                        // "api/dashboard/**",
+                        // "/swagger-ui/**",
+                        // "/v3/api-docs/**"
+                        // ).permitAll()
+
+                        // ✅ Public endpoints
+                        .requestMatchers(
+                                "/api/**",
+                                "/auth/signup",
+                                "/auth/login",
+                                "/login/oauth2/**",
+                                "/error",
+                                // Swagger (optional: dev-only)
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**")
+                        .permitAll()
+
+                        // ✅ Admin-only (Further secured in service layer)
+                        .requestMatchers(
+                                "/auth/admin/**")
+                        .hasRole("ADMIN")
+
+                        // ✅customer-only (Currently secured in service layer)
+                        .requestMatchers(
+                                "/auth/customer/**")
+                        .hasRole("CUSTOMER")
+
                         .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         .successHandler(oauth2LoginSuccessHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Proper 401/403 handling for REST
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((req, res, e) -> {
+                            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"error\":\"Unauthorized\"}");
+                        })
+                        .accessDeniedHandler((req, res, e) -> {
+                            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"error\":\"Forbidden\"}");
+                        }))
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout")
                         .logoutSuccessHandler((request, response, authentication) -> {
@@ -103,6 +146,7 @@ public class SecurityConfig {
                             response.getWriter().write("{\"message\":\"Logout Successful\"}");
                             response.getWriter().flush();
                         }))
+                // ✅ JWT filter (reads Bearer token and populates SecurityContext)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

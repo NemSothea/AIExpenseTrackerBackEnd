@@ -1,6 +1,5 @@
 package com.aiexpense.trackerbackend.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +17,12 @@ import org.springframework.http.HttpStatus;
 import com.aiexpense.trackerbackend.model.Users;
 import com.aiexpense.trackerbackend.service.JwtService;
 import com.aiexpense.trackerbackend.service.UserService;
+import com.aiexpense.trackerbackend.service.dto.AuthResponse;
+import com.aiexpense.trackerbackend.service.dto.LoginRequest;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -56,15 +56,18 @@ public class UserController {
 
     @Operation(summary = "Login user", description = "Authenticate user and return a JWT token")
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Users loginUser) {
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginUser.getEmail(), loginUser.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
 
         if (authentication.isAuthenticated()) {
-            String token = jwtService.generateToken(loginUser.getEmail());
-            return ResponseEntity.ok(token); // Return the token to the client
+            // String token = jwtService.generateToken(loginUser.getEmail());
+            // return ResponseEntity.ok(token); // Return the token to the client
+            String token = jwtService.generateToken(loginRequest.email());
+            return ResponseEntity.ok(new AuthResponse(token, loginRequest.email()));
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+            // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
