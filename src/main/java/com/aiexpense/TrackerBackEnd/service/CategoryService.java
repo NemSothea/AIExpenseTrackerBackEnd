@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aiexpense.trackerbackend.model.Category;
+import com.aiexpense.trackerbackend.entities.Category;
 import com.aiexpense.trackerbackend.repo.CategoryRepository;
 
 

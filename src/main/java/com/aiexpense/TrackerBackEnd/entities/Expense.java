@@ -1,4 +1,4 @@
-package com.aiexpense.trackerbackend.model;
+package com.aiexpense.trackerbackend.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.aiexpense.trackerbackend.config.UserPrincipal;
-import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.repo.UserRepository;
 
 @Service

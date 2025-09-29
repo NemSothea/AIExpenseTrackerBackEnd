@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
 
-import com.aiexpense.trackerbackend.model.Category;
+import com.aiexpense.trackerbackend.entities.Category;
 
 
 @Repository

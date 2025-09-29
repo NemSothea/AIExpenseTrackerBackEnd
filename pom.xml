@@ -63,6 +63,19 @@
 			<scope>test</scope>
 		</dependency>
 <!-- new dependency -->
+<!-- pom.xml -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
+		</dependency>
+		<annotationProcessorPaths>
+		<path>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.5.Final</version>
+		</path>
+		</annotationProcessorPaths>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>

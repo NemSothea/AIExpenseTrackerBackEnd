@@ -7,11 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
-public class HomeController {
+public class WelcomeController {
     
-    @GetMapping("/")
+    @GetMapping("/welcome")
     public String greet(HttpServletRequest request) {
-        return new String("Welcome to AI Expense Tracker:" + request.getSession().getId());
+        return new String("Welcome to AI Expense Tracker" );//+ request.getSession().getId()
     }
 
 }

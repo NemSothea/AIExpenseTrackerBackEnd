@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
-import com.aiexpense.trackerbackend.model.Users;
+
+import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.service.JwtService;
 import com.aiexpense.trackerbackend.service.UserService;
 import com.aiexpense.trackerbackend.service.dto.AuthResponse;
@@ -71,33 +72,33 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "Admin Dashboard", description = "Accessible only to users with the ADMIN role")
-    @GetMapping("/admin/dashboard")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> adminDashboard() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = getUsername(authentication);
-        return ResponseEntity.ok("Welcome to the Admin Dashboard, " + username);
-    }
+    // @Operation(summary = "Admin Dashboard", description = "Accessible only to users with the ADMIN role")
+    // @GetMapping("/admin/dashboard")
+    // @PreAuthorize("hasRole('ADMIN')")
+    // public ResponseEntity<String> adminDashboard() {
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //     String username = getUsername(authentication);
+    //     return ResponseEntity.ok("Welcome to the Admin Dashboard, " + username);
+    // }
 
-    @Operation(summary = "Customer Dashboard", description = "Accessible only to users with the CUSTOMER role")
-    @GetMapping("/customer/dashboard")
-    @PreAuthorize("hasRole('CUSTOMER')")
-    public ResponseEntity<String> customerDashboard() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = getUsername(authentication);
-        return ResponseEntity.ok("Welcome to the Customer Dashboard, " + username);
-    }
+    // @Operation(summary = "Customer Dashboard", description = "Accessible only to users with the CUSTOMER role")
+    // @GetMapping("/customer/dashboard")
+    // @PreAuthorize("hasRole('CUSTOMER')")
+    // public ResponseEntity<String> customerDashboard() {
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //     String username = getUsername(authentication);
+    //     return ResponseEntity.ok("Welcome to the Customer Dashboard, " + username);
+    // }
 
-    private String getUsername(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            return "Unknown User";
-        }
-        Object principal = authentication.getPrincipal();
-        if (principal instanceof UserDetails) {
-            return ((UserDetails) principal).getUsername();
-        }
-        return principal.toString();
-    }
+    // private String getUsername(Authentication authentication) {
+    //     if (authentication == null || !authentication.isAuthenticated()) {
+    //         return "Unknown User";
+    //     }
+    //     Object principal = authentication.getPrincipal();
+    //     if (principal instanceof UserDetails) {
+    //         return ((UserDetails) principal).getUsername();
+    //     }
+    //     return principal.toString();
+    // }
 
 }

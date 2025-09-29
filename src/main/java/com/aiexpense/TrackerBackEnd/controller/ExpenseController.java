@@ -1,6 +1,6 @@
 package com.aiexpense.trackerbackend.controller;
 
-import com.aiexpense.trackerbackend.model.Expense;
+import com.aiexpense.trackerbackend.entities.Expense;
 import com.aiexpense.trackerbackend.service.ExpenseService;
 import org.springframework.web.bind.annotation.*;
 

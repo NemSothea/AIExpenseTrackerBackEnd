@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.exception.UserNotFoundException;
-import com.aiexpense.trackerbackend.model.Users;
 import com.aiexpense.trackerbackend.repo.UserRepository;
 import java.util.logging.Logger;
 

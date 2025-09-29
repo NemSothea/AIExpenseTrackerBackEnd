@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.repo.UserRepository;
 
 import java.util.Optional;

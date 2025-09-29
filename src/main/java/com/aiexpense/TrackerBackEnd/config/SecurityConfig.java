@@ -96,6 +96,7 @@ public class SecurityConfig {
 
                         // ✅ Public endpoints
                         .requestMatchers(
+                                "/welcome",
                                 "/api/**",
                                 "/auth/signup",
                                 "/auth/login",
@@ -107,14 +108,14 @@ public class SecurityConfig {
                         .permitAll()
 
                         // ✅ Admin-only (Further secured in service layer)
-                        .requestMatchers(
-                                "/auth/admin/**")
-                        .hasRole("ADMIN")
+                        // .requestMatchers(
+                        //         "/auth/admin/**")
+                        // .hasRole("ADMIN")
 
                         // ✅customer-only (Currently secured in service layer)
-                        .requestMatchers(
-                                "/auth/customer/**")
-                        .hasRole("CUSTOMER")
+                        // .requestMatchers(
+                        //         "/auth/customer/**")
+                        // .hasRole("CUSTOMER")
 
                         .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2

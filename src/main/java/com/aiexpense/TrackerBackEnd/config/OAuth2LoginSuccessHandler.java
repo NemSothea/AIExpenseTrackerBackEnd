@@ -1,6 +1,6 @@
 package com.aiexpense.trackerbackend.config;
 
-import com.aiexpense.trackerbackend.model.Users;
+import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.repo.UserRepository;
 import com.aiexpense.trackerbackend.service.JwtService;
 
