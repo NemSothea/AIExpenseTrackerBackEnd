@@ -35,13 +35,21 @@ public class SecurityConfig {
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
-    private JwtFilter jwtFilter;
+    private final JwtFilter jwtFilter;
 
     @Autowired
-    private CustomOAuth2UserService customOAuth2UserService;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Autowired
-    private OAuth2LoginSuccessHandler oauth2LoginSuccessHandler;
+    private final OAuth2LoginSuccessHandler oauth2LoginSuccessHandler;
+
+    public SecurityConfig(JwtFilter jwtFilter,
+                          CustomOAuth2UserService customOAuth2UserService,
+                          OAuth2LoginSuccessHandler oauth2LoginSuccessHandler) {
+        this.jwtFilter = jwtFilter;
+        this.customOAuth2UserService = customOAuth2UserService;
+        this.oauth2LoginSuccessHandler = oauth2LoginSuccessHandler;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -74,12 +82,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         logger.info("Configuring HTTP Security filters.");
         return http
-                .cors(cors -> {
-                    logger.info("Configuring CORS with allowed origins and methods.");
-                    cors.configurationSource(corsConfigurationSource());
-                })
-                .csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(request -> request
+                .cors(c -> c.configurationSource(req -> {
+                    var cfg = new org.springframework.web.cors.CorsConfiguration();
+                    cfg.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
+                    cfg.setAllowedMethods(java.util.List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
+                    cfg.setAllowedHeaders(java.util.List.of("*"));   // includes Authorization
+                    cfg.setExposedHeaders(java.util.List.of("*"));
+                    cfg.setAllowCredentials(true);
+                    return cfg;
+                }))
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
 
                         // .requestMatchers(
                         // "/",
@@ -94,35 +107,21 @@ public class SecurityConfig {
                         // "/v3/api-docs/**"
                         // ).permitAll()
 
-                        // ✅ Public endpoints
                         .requestMatchers(
                                 "/welcome",
-                                "/api/**",
-                                "/auth/signup",
-                                "/auth/login",
+                                "/auth/login", "/auth/signup",
                                 "/login/oauth2/**",
-                                "/error",
-                                // Swagger (optional: dev-only)
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**")
-                        .permitAll()
+                                "/swagger-ui/**", "/v3/api-docs/**",
+                                "/error"
+                        ).permitAll()
 
-                        // ✅ Admin-only (Further secured in service layer)
-                        // .requestMatchers(
-                        //         "/auth/admin/**")
-                        // .hasRole("ADMIN")
-
-                        // ✅customer-only (Currently secured in service layer)
-                        // .requestMatchers(
-                        //         "/auth/customer/**")
-                        // .hasRole("CUSTOMER")
+                        .requestMatchers("/api/**").authenticated()
 
                         .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2
-                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
-                        .successHandler(oauth2LoginSuccessHandler))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // Proper 401/403 handling for REST
+                        .userInfoEndpoint(ui -> ui.userService(customOAuth2UserService))
+                        .successHandler(oauth2LoginSuccessHandler)
+                )
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((req, res, e) -> {
                             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -133,21 +132,9 @@ public class SecurityConfig {
                             res.setStatus(HttpServletResponse.SC_FORBIDDEN);
                             res.setContentType("application/json");
                             res.getWriter().write("{\"error\":\"Forbidden\"}");
-                        }))
-                .logout(logout -> logout
-                        .logoutUrl("/auth/logout")
-                        .logoutSuccessHandler((request, response, authentication) -> {
-                            String token = request.getHeader("Authorization");
-                            if (token != null && token.startsWith("Bearer ")) {
-                                token = token.substring(7);
-                                JwtFilter.addToBlacklist(token);
-                                logger.info("Token has been blacklisted after logout.");
-                            }
-                            response.setStatus(HttpServletResponse.SC_OK);
-                            response.getWriter().write("{\"message\":\"Logout Successful\"}");
-                            response.getWriter().flush();
-                        }))
-                // ✅ JWT filter (reads Bearer token and populates SecurityContext)
+                        })
+                )
+                // ⬇️ make sure the JWT filter runs before UsernamePasswordAuthenticationFilter
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

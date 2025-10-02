@@ -12,9 +12,9 @@ import java.nio.file.Paths;
 public class TrackerBackEndApplication {
 
 	public static void main(String[] args) {
-		clearLogFile("src/main/java/com/aiexpense/trackerbackend/logging/app.log");
+		 clearLogFile("src/main/java/com/aiexpense/trackerbackend/logging/app.log");
 		SpringApplication.run(TrackerBackEndApplication.class, args);
-		System.out.println("Hello....git ..");
+		 System.out.println("Hello....git ..");
 	}
 
 	private static void clearLogFile(String logFilePath) {

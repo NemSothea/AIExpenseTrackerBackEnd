@@ -1,13 +1,11 @@
 package com.aiexpense.trackerbackend.config;
 
+import com.aiexpense.trackerbackend.exception.UserNotFoundException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,82 +17,81 @@ import com.aiexpense.trackerbackend.service.CustomUserDetailsService;
 import com.aiexpense.trackerbackend.service.JwtService;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+//    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
 
-    @Autowired
-    private JwtService jwtService;
+    private static final java.util.Set<String> BLACKLIST =
+            java.util.Collections.synchronizedSet(new java.util.HashSet<>());
 
-    @Autowired
-    private ApplicationContext context;
+    public static void addToBlacklist(String token) { BLACKLIST.add(token); }
 
-    private static final Set<String> blacklistedTokens = Collections.synchronizedSet(new HashSet<>());
+    private final JwtService jwtService;
+    private final CustomUserDetailsService userDetailsService;
 
-    public static void addToBlacklist(String token) {
-        blacklistedTokens.add(token);
-        logger.info("Token added to blacklist: {}", token);
-    }
-
-    private boolean isTokenBlacklisted(String token) {
-        return blacklistedTokens.contains(token);
+    public JwtFilter(JwtService jwtService, CustomUserDetailsService userDetailsService) {
+        this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        return uri.startsWith("/auth/")
+                || uri.startsWith("/swagger-ui/")
+                || uri.startsWith("/v3/api-docs");
+    }
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
-        String token = null;
-        String userName = null;
-
-        logger.info("Processing request to URI: {}", request.getRequestURI());
-
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7); // Extract the token
-            logger.debug("Token extracted from Authorization header: {}", token);
-
-            if (isTokenBlacklisted(token)) { // Check if the token is blacklisted
-                logger.warn("Blacklisted token detected: {}", token);
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.getWriter().write("Token has been invalidated. Please log in again.");
-                return; // Stop further processing
-            }
-
-            try {
-                userName = jwtService.extractUserName(token); // Extract username from the token
-                logger.debug("Extracted username from token: {}", userName);
-            } catch (Exception e) {
-                logger.error("Error while extracting username from token: {}", e.getMessage());
-            }
+        String header = req.getHeader("Authorization");
+        if (header == null || !header.startsWith("Bearer ")) {
+            chain.doFilter(req, res);
+            return;
         }
 
-        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            logger.info("User '{}' is not authenticated, proceeding with token validation.", userName);
+        String token = header.substring(7);
 
+        if (BLACKLIST.contains(token)) {
+            write401(res, "Token blacklisted");
+            return;
+        }
+
+        String username;
+        try {
+            username = jwtService.extractUserName(token); // from "sub"
+        } catch (Exception e) {
+            write401(res, "Invalid token");
+            return;
+        }
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             try {
-                UserDetails userDetails = context.getBean(CustomUserDetailsService.class).loadUserByUsername(userName);
-                if (jwtService.validateToken(token, userDetails)) {
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
-                            null, userDetails.getAuthorities());
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); // Attach request
-                                                                                                      // details
-                    SecurityContextHolder.getContext().setAuthentication(authToken); // Set authentication context
-                    logger.info("User '{}' successfully authenticated.", userName);
-                } else {
-                    logger.warn("Token validation failed for user '{}'.", userName);
+                UserDetails user = userDetailsService.loadUserByUsername(username);
+                if (!jwtService.validateToken(token, user)) {
+                    write401(res, "Token invalid or expired");
+                    return;
                 }
-            } catch (Exception e) {
-                logger.error("Error during token validation or user authentication: {}", e.getMessage());
+                var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            } catch (UserNotFoundException ex) {
+                write401(res, "User not found");
+                return;
             }
         }
 
-        logger.info("Continuing filter chain for request to URI: {}", request.getRequestURI());
-        filterChain.doFilter(request, response); // Continue the filter chain
+        chain.doFilter(req, res);
+    }
+
+    private void write401(HttpServletResponse res, String msg) throws IOException {
+        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        res.setContentType("application/json");
+        res.getWriter().write("{\"error\":\"" + msg + "\"}");
     }
 }

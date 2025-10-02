@@ -6,16 +6,15 @@ import com.aiexpense.trackerbackend.service.dto.DashboardDTO;
 import com.aiexpense.trackerbackend.service.dto.ExpenseListItemDTO;
 
 
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 
 import java.time.LocalDate;
-import java.util.Set;
+
 
 
 @RestController
@@ -47,7 +46,7 @@ public class DashboardController {
 
   /**
    * Tab 2: full expense history for user with pagination
-   * Example: /api/dashboard/history?userId=1&start=2025-09-01&end=2025-10-31
+   * Example: /api/dashboard/history-pagination?userId=1&page=0&size=20&sort=expenseDate%2Cdesc
    */
   @GetMapping("/history-pagination")
 public Page<ExpenseListItemDTO> getHistory(

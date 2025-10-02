@@ -2,12 +2,10 @@ package com.aiexpense.trackerbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
+
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,14 +33,17 @@ import jakarta.validation.Valid;
 @Tag(name = "User Authentication", description = "APIs for User Signup, Login, and Role-Based Dashboards")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtService jwtService;
+    public UserController(UserService userService,
+                          AuthenticationManager authenticationManager,
+                          JwtService jwtService) {
+        this.userService = userService;
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
+    }
 
     @Operation(summary = "Register a new user", description = "Allows users to sign up with their details")
     @PostMapping("/signup")
@@ -62,43 +63,11 @@ public class UserController {
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
 
         if (authentication.isAuthenticated()) {
-            // String token = jwtService.generateToken(loginUser.getEmail());
-            // return ResponseEntity.ok(token); // Return the token to the client
             String token = jwtService.generateToken(loginRequest.email());
-            return ResponseEntity.ok(new AuthResponse(token, loginRequest.email()));
+            return ResponseEntity.ok(new AuthResponse(token));
         } else {
             // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
              return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-
-    // @Operation(summary = "Admin Dashboard", description = "Accessible only to users with the ADMIN role")
-    // @GetMapping("/admin/dashboard")
-    // @PreAuthorize("hasRole('ADMIN')")
-    // public ResponseEntity<String> adminDashboard() {
-    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    //     String username = getUsername(authentication);
-    //     return ResponseEntity.ok("Welcome to the Admin Dashboard, " + username);
-    // }
-
-    // @Operation(summary = "Customer Dashboard", description = "Accessible only to users with the CUSTOMER role")
-    // @GetMapping("/customer/dashboard")
-    // @PreAuthorize("hasRole('CUSTOMER')")
-    // public ResponseEntity<String> customerDashboard() {
-    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    //     String username = getUsername(authentication);
-    //     return ResponseEntity.ok("Welcome to the Customer Dashboard, " + username);
-    // }
-
-    // private String getUsername(Authentication authentication) {
-    //     if (authentication == null || !authentication.isAuthenticated()) {
-    //         return "Unknown User";
-    //     }
-    //     Object principal = authentication.getPrincipal();
-    //     if (principal instanceof UserDetails) {
-    //         return ((UserDetails) principal).getUsername();
-    //     }
-    //     return principal.toString();
-    // }
-
 }
