@@ -52,17 +52,17 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
       @Param("end") LocalDate end);
 
   // Top categories
-  @Query("""
-        select new com.aiexpense.trackerbackend.service.dto.TopCategoryDTO(
-          e.category.id, e.category.name, sum(e.amount), count(e)
-        )
-        from Expense e
-        where e.enabled = true
-          and e.user.id = :userId
-          and e.expenseDate between :start and :end
-        group by e.category.id, e.category.name
-        order by sum(e.amount) desc
-      """)
+@Query("""
+      select new com.aiexpense.trackerbackend.service.dto.TopCategoryDTO(
+        e.category.id, e.category.name, sum(e.amount), count(e)
+      )
+      from Expense e
+      where e.enabled = true
+        and e.user.id = :userId
+        and e.expenseDate between :start and :end
+      group by e.category.id, e.category.name
+      order by sum(e.amount) desc, count(e) desc
+    """)
   List<TopCategoryDTO> topCategories(@Param("userId") Integer userId,
       @Param("start") LocalDate start,
       @Param("end") LocalDate end,

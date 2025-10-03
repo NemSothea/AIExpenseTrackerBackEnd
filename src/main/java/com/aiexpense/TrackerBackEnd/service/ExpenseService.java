@@ -120,12 +120,17 @@ public class ExpenseService {
       int topLimit,
       int recentLimit) {
 
-    LocalDate today = LocalDate.now();
-    LocalDate start = (startDate != null) ? startDate : today.withDayOfMonth(1);
-    LocalDate end = (endDate != null) ? endDate : today;
+    LocalDate start = (startDate != null) ? startDate : LocalDate.of(1900, 1, 1);
+    LocalDate end = (endDate != null) ? endDate : LocalDate.of(9999, 12, 31);
+
+    System.out.println("Dashboard date range: " + start + " to " + end);
 
     BigDecimal total = expenseRepository.sumAmount(userId, start, end);
     BigDecimal avg = expenseRepository.avgAmount(userId, start, end);
+
+    // Debug: Print the calculated totals
+    System.out.println("Total amount: " + total);
+    System.out.println("Average amount: " + avg);
 
     List<TopCategoryDTO> top = expenseRepository.topCategories(
         userId, start, end, PageRequest.of(0, Math.max(1, topLimit)));
