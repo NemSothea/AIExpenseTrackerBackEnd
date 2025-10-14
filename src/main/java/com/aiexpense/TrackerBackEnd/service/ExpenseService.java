@@ -112,7 +112,8 @@ public class ExpenseService {
     e.setEnabled(false);
     return expenseRepository.save(e);
   }
-
+private static final LocalDate MIN_DATE = LocalDate.of(1900, 1, 1);
+private static final LocalDate MAX_DATE = LocalDate.of(9999, 12, 31);
   // -------- Dashboard summary --------
   public DashboardDTO getDashboard(Integer userId,
       LocalDate startDate,
@@ -120,8 +121,8 @@ public class ExpenseService {
       int topLimit,
       int recentLimit) {
 
-    LocalDate start = (startDate != null) ? startDate : LocalDate.of(1900, 1, 1);
-    LocalDate end = (endDate != null) ? endDate : LocalDate.of(9999, 12, 31);
+      LocalDate start = (startDate != null) ? startDate : MIN_DATE;
+      LocalDate end   = (endDate   != null) ? endDate   : MAX_DATE;
 
     System.out.println("Dashboard date range: " + start + " to " + end);
 
@@ -153,4 +154,6 @@ public class ExpenseService {
         topWithPct,
         recent);
   }
+
+  
 }
