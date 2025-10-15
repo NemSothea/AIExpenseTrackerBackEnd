@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank(message ="This is required.")
@@ -39,7 +39,8 @@ public class Users implements Serializable {
 
     private String role; // ROLE_ADMIN or ROLE_CUSTOMER
     private boolean enabled;
-
+    @Version
+    private Long version;
 
     // Getters, setters, and other fields
 }

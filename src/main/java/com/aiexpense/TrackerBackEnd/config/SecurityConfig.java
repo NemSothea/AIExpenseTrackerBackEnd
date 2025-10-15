@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
-import org.springframework.security.config.http.SessionCreationPolicy;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -94,26 +94,26 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        // .requestMatchers(
-                        // "/",
-                        // "/auth/signup",
-                        // "/auth/login",
-                        // "/login/oauth2",
-                        // "/error",
-                        // "/api/expenses/**",
-                        // "/api/categories/**",
-                        // "api/dashboard/**",
-                        // "/swagger-ui/**",
-                        // "/v3/api-docs/**"
-                        // ).permitAll()
-
                         .requestMatchers(
-                                "/welcome",
-                                "/auth/login", "/auth/signup",
-                                "/login/oauth2/**",
-                                "/swagger-ui/**", "/v3/api-docs/**",
-                                "/error"
+                        "/",
+                        "/auth/signup",
+                        "/auth/login",
+                        "/login/oauth2",
+                        "/error",
+                        "/api/expenses/**",
+                        "/api/categories/**",
+                        "api/dashboard/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**"
                         ).permitAll()
+
+                        // .requestMatchers(
+                        //         "/welcome",
+                        //         "/auth/login", "/auth/signup",
+                        //         "/login/oauth2/**",
+                        //         "/swagger-ui/**", "/v3/api-docs/**",
+                        //         "/error"
+                        // ).permitAll()
 
                         .requestMatchers("/api/**").authenticated()
 
