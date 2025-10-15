@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 
 import com.aiexpense.trackerbackend.entities.Users;
 import com.aiexpense.trackerbackend.service.JwtService;
+import com.aiexpense.trackerbackend.service.UserMapper;
 import com.aiexpense.trackerbackend.service.UserService;
 import com.aiexpense.trackerbackend.service.dto.AuthResponse;
 import com.aiexpense.trackerbackend.service.dto.LoginRequest;
@@ -74,7 +75,9 @@ public class UserController {
 
         if (authentication.isAuthenticated()) {
             String token = jwtService.generateToken(loginRequest.email());
-            return ResponseEntity.ok(new AuthResponse(token));
+            var user = userService.findByEmail(loginRequest.email());
+            var dto  = UserMapper.toDTO(user);
+            return ResponseEntity.ok(new AuthResponse(token,dto));
         } else {
             // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

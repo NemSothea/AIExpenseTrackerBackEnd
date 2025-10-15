@@ -29,13 +29,13 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
     Page<ExpenseListItemDTO> history(@Param("userId") Integer userId, Pageable pageable);
 
   // Totals
-  @Query("""
-        select coalesce(sum(e.amount), 0)
-        from Expense e
-        where e.enabled = true
-          and e.user.id = :userId
-          and e.expenseDate between :start and :end
-      """)
+@Query("""
+  select coalesce(sum(e.amount), 0)
+  from Expense e
+  where e.enabled = true
+    and e.user.id = :userId
+    and e.expenseDate between :start and :end
+""")
   BigDecimal sumAmount(@Param("userId") Integer userId,
       @Param("start") LocalDate start,
       @Param("end") LocalDate end);
