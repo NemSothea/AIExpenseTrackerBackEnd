@@ -94,26 +94,26 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers(
-                        "/",
-                        "/auth/signup",
-                        "/auth/login",
-                        "/login/oauth2",
-                        "/error",
-                        "/api/expenses/**",
-                        "/api/categories/**",
-                        "api/dashboard/**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**"
-                        ).permitAll()
-
                         // .requestMatchers(
-                        //         "/welcome",
-                        //         "/auth/login", "/auth/signup",
-                        //         "/login/oauth2/**",
-                        //         "/swagger-ui/**", "/v3/api-docs/**",
-                        //         "/error"
+                        // "/",
+                        // "/auth/signup",
+                        // "/auth/login",
+                        // "/login/oauth2",
+                        // "/error",
+                        // "/api/expenses/**",
+                        // "/api/categories/**",
+                        // "api/dashboard/**",
+                        // "/swagger-ui/**",
+                        // "/v3/api-docs/**"
                         // ).permitAll()
+
+                        .requestMatchers(
+                                "/welcome",
+                                "/auth/login", "/auth/signup",
+                                "/login/oauth2/**",
+                                "/swagger-ui/**", "/v3/api-docs/**",
+                                "/error"
+                        ).permitAll()
 
                         .requestMatchers("/api/**").authenticated()
 

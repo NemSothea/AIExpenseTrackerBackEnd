@@ -21,7 +21,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 
   @Query("""
       select new com.aiexpense.trackerbackend.service.dto.ExpenseListItemDTO(
-        e.id, e.category.name, e.description, e.expenseDate, e.amount
+        e.id, e.category.name,e.category.id, e.description, e.expenseDate, e.amount
       )
       from Expense e
       where e.enabled = true and e.user.id = :userId

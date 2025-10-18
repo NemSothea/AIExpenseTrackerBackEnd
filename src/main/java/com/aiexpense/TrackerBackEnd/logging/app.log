@@ -1,0 +1,258 @@
+2025-10-15T16:14:52.417+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.TrackerBackEndApplication          : Starting TrackerBackEndApplication using Java 21.0.8 with PID 10950 (/Users/sothea007/Desktop/AIExpenseTrackerBackEnd/target/classes started by sothea007 in /Users/sothea007/Desktop/AIExpenseTrackerBackEnd)
+2025-10-15T16:14:52.418+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.TrackerBackEndApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-10-15T16:14:52.855+07:00  INFO 10950 --- [TrackerBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-15T16:14:52.881+07:00  INFO 10950 --- [TrackerBackEnd] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 3 JPA repository interfaces.
+2025-10-15T16:14:53.148+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-10-15T16:14:53.154+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-15T16:14:53.155+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-10-15T16:14:53.179+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-15T16:14:53.179+07:00  INFO 10950 --- [TrackerBackEnd] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 744 ms
+2025-10-15T16:14:53.281+07:00  INFO 10950 --- [TrackerBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-15T16:14:53.380+07:00  INFO 10950 --- [TrackerBackEnd] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7dd91ffc
+2025-10-15T16:14:53.380+07:00  INFO 10950 --- [TrackerBackEnd] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-15T16:14:53.399+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-15T16:14:53.421+07:00  INFO 10950 --- [TrackerBackEnd] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-10-15T16:14:53.434+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-15T16:14:53.535+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-15T16:14:53.569+07:00  INFO 10950 --- [TrackerBackEnd] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-15T16:14:53.952+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-15T16:14:53.954+07:00  INFO 10950 --- [TrackerBackEnd] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-15T16:14:54.066+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-15T16:14:54.344+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring BCryptPasswordEncoder bean.
+2025-10-15T16:14:54.629+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring AuthenticationManager bean.
+2025-10-15T16:14:54.635+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring DaoAuthenticationProvider bean.
+2025-10-15T16:14:54.637+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring CustomUserDetailsService bean.
+2025-10-15T16:14:54.638+07:00  INFO 10950 --- [TrackerBackEnd] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-15T16:14:54.639+07:00  WARN 10950 --- [TrackerBackEnd] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-15T16:14:54.686+07:00  WARN 10950 --- [TrackerBackEnd] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-15T16:14:54.732+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring HTTP Security filters.
+2025-10-15T16:14:54.865+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-10-15T16:14:54.910+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : Configuring CORS Configuration.
+2025-10-15T16:14:54.910+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.config.SecurityConfig              : CORS Configuration successfully set.
+2025-10-15T16:14:55.073+07:00  INFO 10950 --- [TrackerBackEnd] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-10-15T16:14:55.082+07:00  INFO 10950 --- [TrackerBackEnd] [main] c.a.t.TrackerBackEndApplication          : Started TrackerBackEndApplication in 2.862 seconds (process running for 3.01)
+2025-10-15T16:15:02.256+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-15T16:15:02.256+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-15T16:15:02.256+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-10-15T16:15:02.381+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:15:02.381+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:15:02.381+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:15:02.381+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:15:02.382+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:15:02.382+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:15:02.382+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:15:02.382+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:15:02.434+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:15:02.435+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:15:02.435+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:15:02.435+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:17:39.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:17:39.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:17:39.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:17:39.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:17:39.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:17:39.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:17:39.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:17:39.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:18:01.188+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:18:01.189+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:18:01.189+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:18:01.189+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:18:01.262+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:18:01.262+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:18:01.263+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:18:01.263+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:30.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:30.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:30.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:40.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:40.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:40.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:40.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:40.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:40.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:40.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:40.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:41.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:41.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:41.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:41.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:41.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:41.234+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:41.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:41.235+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:45.414+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:45.414+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:45.415+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:45.415+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:45.424+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:45.424+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:45.425+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:45.425+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:23:45.431+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:23:45.431+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:23:45.432+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:23:45.432+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:24:23.260+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:24:23.261+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:24:23.262+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:24:23.262+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:24:23.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:24:23.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:24:23.281+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:24:23.281+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:27:20.792+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:27:20.792+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:27:20.793+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:27:20.793+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:27:20.828+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:27:20.829+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:27:20.829+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:27:20.829+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:09.232+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:09.232+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:09.233+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:10.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:10.241+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:10.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:10.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:10.242+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:10.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:10.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:10.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:12.236+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:12.236+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:12.236+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:12.236+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:12.237+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:12.237+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:12.237+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:12.237+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:18.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:18.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:18.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:18.243+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:18.244+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:18.244+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:18.244+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:18.244+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:23.121+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:23.122+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:23.122+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:23.122+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:23.131+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:23.131+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:23.131+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:23.131+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:23.139+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:23.139+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:23.140+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:23.140+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:55.585+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:55.585+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:55.585+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:55.585+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-2] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:55.591+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:55.592+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:55.593+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:55.593+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:28:55.607+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:28:55.607+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:28:55.607+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:28:55.607+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:32:31.274+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:32:31.274+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:32:31.274+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:32:31.274+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:32:31.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:32:31.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:32:31.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:32:31.280+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:32:31.293+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:32:31.293+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:32:31.294+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:32:31.294+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:17.923+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:17.923+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:17.924+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:17.924+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:17.930+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:17.930+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:17.931+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:17.931+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:17.938+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:17.939+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:17.939+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:17.939+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:42.938+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:42.938+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:42.939+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:42.939+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:42.956+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:42.956+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:42.956+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:42.956+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-9] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:53.889+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:53.889+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:53.889+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:53.890+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-7] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:34:53.902+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:34:53.902+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:34:53.902+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: sothea@example.com
+2025-10-15T16:34:53.903+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:37:11.754+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.t.service.CustomUserDetailsService   : User found with email: sothea@example.com, Role: ROLE_CUSTOMER
+2025-10-15T16:37:11.755+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-5] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: sothea@example.com
+2025-10-15T16:39:32.650+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:39:32.651+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:39:32.745+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:39:32.745+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-8] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:39:32.781+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:39:32.782+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:39:32.782+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:39:32.782+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:39:32.783+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:39:32.783+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:39:32.783+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:39:32.783+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:39:32.787+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:39:32.787+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:39:32.787+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:39:32.787+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-4] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:40:41.290+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:40:41.292+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:40:41.293+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:40:41.293+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-3] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:40:41.312+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:40:41.312+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:40:41.313+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:40:41.313+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-10] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:41:17.319+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:41:17.320+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:41:17.320+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:41:17.320+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-1] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:41:17.338+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.t.service.CustomUserDetailsService   : User found with email: test01@gmail.com, Role: ROLE_CUSTOMER
+2025-10-15T16:41:17.338+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : UserPrincipal created for user with email: test01@gmail.com
+2025-10-15T16:41:17.340+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Retrieving authorities for user: test01@gmail.com
+2025-10-15T16:41:17.340+07:00  INFO 10950 --- [TrackerBackEnd] [http-nio-8080-exec-6] c.a.trackerbackend.config.UserPrincipal  : Assigned authority: ROLE_CUSTOMER
+2025-10-15T16:42:05.927+07:00  INFO 10950 --- [TrackerBackEnd] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-15T16:42:05.935+07:00  INFO 10950 --- [TrackerBackEnd] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-15T16:42:05.942+07:00  INFO 10950 --- [TrackerBackEnd] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-15T16:42:05.945+07:00  INFO 10950 --- [TrackerBackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-10-15T16:42:05.946+07:00  INFO 10950 --- [TrackerBackEnd] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
