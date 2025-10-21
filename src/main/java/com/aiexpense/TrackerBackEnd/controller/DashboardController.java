@@ -5,17 +5,10 @@ import com.aiexpense.trackerbackend.service.ExpenseService;
 import com.aiexpense.trackerbackend.service.dto.DashboardDTO;
 import com.aiexpense.trackerbackend.service.dto.ExpenseListItemDTO;
 
-
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.data.domain.Page;
-
-
 import java.time.LocalDate;
-
-
 
 @RestController
 @RequestMapping("/api/dashboard")

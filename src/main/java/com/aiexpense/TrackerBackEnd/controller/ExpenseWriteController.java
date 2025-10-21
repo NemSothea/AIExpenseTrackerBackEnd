@@ -4,7 +4,7 @@ import com.aiexpense.trackerbackend.service.ExpenseWriteService;
 import com.aiexpense.trackerbackend.service.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
