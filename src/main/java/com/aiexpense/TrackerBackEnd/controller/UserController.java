@@ -1,6 +1,5 @@
 package com.aiexpense.trackerbackend.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -76,8 +75,8 @@ public class UserController {
         if (authentication.isAuthenticated()) {
             String token = jwtService.generateToken(loginRequest.email());
             var user = userService.findByEmail(loginRequest.email());
-            var dto  = UserMapper.toDTO(user);
-            return ResponseEntity.ok(new AuthResponse(token,dto));
+            var dto = UserMapper.toDTO(user);
+            return ResponseEntity.ok(new AuthResponse(token, dto));
         } else {
             // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

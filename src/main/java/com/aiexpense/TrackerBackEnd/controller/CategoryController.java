@@ -20,40 +20,40 @@ import com.aiexpense.trackerbackend.service.CategoryService;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
-    
+
     @Autowired
     private CategoryService categoryService;
-    
+
     // Get all categories
     @GetMapping
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
-    
+
     // Get only active categories
     @GetMapping("/active")
     public List<Category> getActiveCategories() {
         return categoryService.getActiveCategories();
     }
-    
+
     // Get category by ID
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable Integer id) {
         Optional<Category> category = categoryService.getCategoryById(id);
         return category.map(ResponseEntity::ok)
-                      .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
     }
-    
+
     // Create new category
     @PostMapping
     public Category createCategory(@RequestBody Category category) {
         return categoryService.createCategory(category);
     }
-    
+
     // Update category
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateCategory(
-            @PathVariable Integer id, 
+            @PathVariable Integer id,
             @RequestBody Category categoryDetails) {
         try {
             Category updatedCategory = categoryService.updateCategory(id, categoryDetails);
@@ -62,7 +62,7 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     // Delete category permanently
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
@@ -73,7 +73,7 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     // Soft delete category
     @DeleteMapping("/{id}/soft")
     public ResponseEntity<Void> softDeleteCategory(@PathVariable Integer id) {

@@ -1,6 +1,5 @@
 package com.aiexpense.trackerbackend.controller;
 
-
 import com.aiexpense.trackerbackend.service.ExpenseService;
 import com.aiexpense.trackerbackend.service.dto.DashboardDTO;
 import com.aiexpense.trackerbackend.service.dto.ExpenseListItemDTO;
@@ -36,19 +35,18 @@ public class DashboardController {
     return expenseService.getDashboard(userId, start, end, topLimit, recentLimit);
   }
 
-
   /**
    * Tab 2: full expense history for user with pagination
-   * Example: /api/dashboard/history-pagination?userId=1&page=0&size=20&sort=expenseDate%2Cdesc
+   * Example:
+   * /api/dashboard/history-pagination?userId=1&page=0&size=20&sort=expenseDate%2Cdesc
    */
   @GetMapping("/history-pagination")
-public Page<ExpenseListItemDTO> getHistory(
-    @RequestParam Integer userId,
-    @RequestParam(defaultValue = "0")  int page,
-    @RequestParam(defaultValue = "20") int size,
-    @RequestParam(defaultValue = "expenseDate,desc") String sort
-) {
+  public Page<ExpenseListItemDTO> getHistory(
+      @RequestParam Integer userId,
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "20") int size,
+      @RequestParam(defaultValue = "expenseDate,desc") String sort) {
     return expenseService.getUserHistory(userId, page, size, sort);
-}
+  }
 
 }

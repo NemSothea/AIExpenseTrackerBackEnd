@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/create-expenses")
-public class ExpenseWriteController {
+public class ExpenseUserController {
 
   private final ExpenseWriteService service;
 
-  public ExpenseWriteController(ExpenseWriteService service) {
+  public ExpenseUserController(ExpenseWriteService service) {
     this.service = service;
   }
 
@@ -36,5 +36,12 @@ public class ExpenseWriteController {
   @PutMapping("/{id}")
   public ExpenseResponseDTO put(@PathVariable Integer id, @Valid @RequestBody ExpenseUpdateRequest req) {
     return service.update(id, req);
+  }
+
+  @Operation(summary = "Delete expense")
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    service.delete(id);
+    return ResponseEntity.noContent().build(); // 204 No Content
   }
 }

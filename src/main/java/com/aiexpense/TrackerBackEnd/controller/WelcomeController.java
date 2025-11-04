@@ -13,5 +13,9 @@ public class WelcomeController {
     public String greet(HttpServletRequest request) {
         return new String("Welcome to AI Expense Tracker" );//+ request.getSession().getId()
     }
+    @GetMapping("/home")
+    public String home(HttpServletRequest request) {
+        return new String("Welcome to AI Expense Tracker" );//+ request.getSession().getId()
+    }
 
 }

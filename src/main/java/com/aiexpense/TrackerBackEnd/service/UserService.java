@@ -66,7 +66,7 @@ public class UserService {
 
     public Users findByEmail(String email) {
         return userRepository.findByEmail(email)
-                   .orElseThrow(() -> new IllegalArgumentException("User not found: " + email));
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + email));
     }
 
 }

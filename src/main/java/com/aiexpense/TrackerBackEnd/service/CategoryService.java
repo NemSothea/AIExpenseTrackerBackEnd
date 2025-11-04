@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.aiexpense.trackerbackend.entities.Category;
 import com.aiexpense.trackerbackend.repo.CategoryRepository;
 
-
 @Service
 public class CategoryService {
 

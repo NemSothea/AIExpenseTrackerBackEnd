@@ -18,16 +18,18 @@ import com.aiexpense.trackerbackend.service.JwtService;
 
 import java.io.IOException;
 
-
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-//    private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+    // private static final Logger logger =
+    // LoggerFactory.getLogger(JwtFilter.class);
 
-    private static final java.util.Set<String> BLACKLIST =
-            java.util.Collections.synchronizedSet(new java.util.HashSet<>());
+    private static final java.util.Set<String> BLACKLIST = java.util.Collections
+            .synchronizedSet(new java.util.HashSet<>());
 
-    public static void addToBlacklist(String token) { BLACKLIST.add(token); }
+    public static void addToBlacklist(String token) {
+        BLACKLIST.add(token);
+    }
 
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;

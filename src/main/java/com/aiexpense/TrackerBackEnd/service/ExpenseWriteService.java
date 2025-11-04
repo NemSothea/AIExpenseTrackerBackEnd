@@ -1,6 +1,5 @@
 package com.aiexpense.trackerbackend.service;
 
-
 import com.aiexpense.trackerbackend.entities.*;
 
 import com.aiexpense.trackerbackend.repo.CategoryRepository;
@@ -61,12 +60,24 @@ public class ExpenseWriteService {
           .orElseThrow(() -> new EntityNotFoundException("Category not found: " + req.categoryId()));
       e.setCategory(cat);
     }
-    if (req.amount() != null)        e.setAmount(req.amount());
-    if (req.description() != null)   e.setDescription(req.description());
-    if (req.expenseDate() != null)   e.setExpenseDate(req.expenseDate());
-    if (req.enabled() != null)       e.setEnabled(req.enabled());
+    if (req.amount() != null)
+      e.setAmount(req.amount());
+    if (req.description() != null)
+      e.setDescription(req.description());
+    if (req.expenseDate() != null)
+      e.setExpenseDate(req.expenseDate());
+    if (req.enabled() != null)
+      e.setEnabled(req.enabled());
 
     e = expenseRepo.save(e);
     return ExpenseMapper.toResponse(e);
+  }
+
+  @Transactional
+  public void delete(Integer id) {
+    Expense expense = expenseRepo.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Expense not found: " + id));
+    expense.setEnabled(false); // Soft delete
+    expenseRepo.save(expense);
   }
 }

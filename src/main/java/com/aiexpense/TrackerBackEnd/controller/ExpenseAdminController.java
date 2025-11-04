@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// This page for Rule userAdmin only
 @RestController
 @RequestMapping("/api/expenses")
-public class ExpenseController {
+public class ExpenseAdminController {
 
   private final ExpenseService expenseService;
 
-  public ExpenseController(ExpenseService expenseService) {
+  public ExpenseAdminController(ExpenseService expenseService) {
     this.expenseService = expenseService;
   }
 

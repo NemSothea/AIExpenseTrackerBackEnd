@@ -14,23 +14,23 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="users")
+@Table(name = "users")
 public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message ="This is required.")
-    @Size(min=2, max=20, message ="Min 2 and Max 20 charcters are allowed!!")
+    @NotBlank(message = "This is required.")
+    @Size(min = 2, max = 20, message = "Min 2 and Max 20 charcters are allowed!!")
     private String name;
 
-    @Email(regexp="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message="Invalid Email!")
+    @Email(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email!")
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message ="This is required.")
-    @Size(min=5, message ="Password must be at least 5 characters long!")
+    @NotBlank(message = "This is required.")
+    @Size(min = 5, message = "Password must be at least 5 characters long!")
     private String password;
 
     @Pattern(regexp = "^[0-9]{10}$", message = "Contact number must be a valid 10-digit number!")
@@ -44,6 +44,3 @@ public class Users implements Serializable {
 
     // Getters, setters, and other fields
 }
-
-
-

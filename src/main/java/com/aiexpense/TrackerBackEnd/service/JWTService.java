@@ -1,7 +1,5 @@
 package com.aiexpense.trackerbackend.service;
 
-
-
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
@@ -19,8 +17,10 @@ public class JwtService {
         this.userRepo = userRepo;
     }
 
-    @Value("${app.jwt.secret}") private String secretBase64;  // Base64, >= 32 bytes
-    @Value("${app.jwt.ttl:PT24H}") private java.time.Duration ttl;
+    @Value("${app.jwt.secret}")
+    private String secretBase64; // Base64, >= 32 bytes
+    @Value("${app.jwt.ttl:PT24H}")
+    private java.time.Duration ttl;
 
     private javax.crypto.SecretKey signingKey;
 
@@ -35,7 +35,8 @@ public class JwtService {
 
     public String generateToken(String username) {
         String role = userRepo.findRoleByUsername(username);
-        if (role == null || role.isBlank()) role = "ROLE_CUSTOMER";
+        if (role == null || role.isBlank())
+            role = "ROLE_CUSTOMER";
 
         var now = java.time.Instant.now();
         var exp = now.plus(ttl);
@@ -45,7 +46,7 @@ public class JwtService {
                 .subject(username)
                 .issuedAt(java.util.Date.from(now))
                 .expiration(java.util.Date.from(exp))
-                .signWith(signingKey, io.jsonwebtoken.Jwts.SIG.HS256)  // 0.12.6 API
+                .signWith(signingKey, io.jsonwebtoken.Jwts.SIG.HS256) // 0.12.6 API
                 .compact();
     }
 
@@ -56,7 +57,8 @@ public class JwtService {
     public boolean validateToken(String token, org.springframework.security.core.userdetails.UserDetails user) {
         try {
             var c = claims(token); // verifies signature & dates
-            if (!user.getUsername().equals(c.getSubject())) return false;
+            if (!user.getUsername().equals(c.getSubject()))
+                return false;
             var exp = c.getExpiration();
             return exp != null && exp.after(new java.util.Date());
         } catch (Exception e) {
