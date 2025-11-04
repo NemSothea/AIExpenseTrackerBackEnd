@@ -208,6 +208,9 @@ curl -H "Authorization: Bearer YOUR_JWT_TOKEN" \
 ### 🔍 Interactive API Docs
 Access Swagger UI at: http://localhost:8080/swagger-ui/index.html
 
+### ⚙️ Swagger-ui
+![Process Flow](https://github.com/NemSothea/AIExpenseTrackerBackEnd/blob/main/src/main/resources/images/Backend_Image.png)
+
 ## 🎯 Usage Guide
 
 ### Adding Expenses
@@ -360,6 +363,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Backend API**: [Spring Boot Backend](https://github.com/NemSothea/AIExpenseTrackerBackEnd)
 - **Web Dashboard**: [React Frontend](https://github.com/NemSothea/AIExpenseTrackerFrontend)
 - **OpenAI Platform**: [API Keys](https://platform.openai.com/settings/organization/api-keys)
+- **Slide Document**: [Slide](https://docs.google.com/presentation/d/18H9n117rLrR5A4tOe5ecdOdIB8gpVb4a/edit?slide=id.p1#slide=id.p1)
 
 ---
 
