@@ -9,7 +9,7 @@
 
 **An intelligent expense management application powered by AI**
 
-[Features](#-features) • [Installation](#-installation) • [API Docs](#-api-documentation) • [Demo](#-demo) • [Team](#-team)
+[Features](#-features) • [Installation](#-installation) • [API Docs](#-api-documentation)• [Team](#-team)
 
 </div>
 
