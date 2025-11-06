@@ -25,15 +25,39 @@ AI Expense Tracker is a comprehensive financial management solution that leverag
 
 ## ✨ Features
 
-### 🤖 Core Capabilities
-| Feature | Description | Status |
-|---------|-------------|---------|
-| 📝 Manual Expense Entry | Traditional form-based expense logging | 🧑🏻‍💻 Completed |
-| 📷 Receipt OCR Scanning | AI-powered receipt scanning with automatic data extraction | 🧑🏻‍💻 Completed |
-| 🎤 Voice Input | Natural language expense creation via voice commands | 🧑🏻‍💻 Completed |
-| 🏷️ AI Categorization | Machine learning-based automatic expense categorization | 🧑🏻‍💻 Completed |
-| 📊 Data Visualization | Interactive charts and spending analytics |🧑🏻‍💻 Completed |
-| 🔐 Secure Authentication | JWT + OAuth2 with role-based access control | 🧑🏻‍💻 Completed |
+##  🚀 Enhanced AIExpense API v2
+##  🔐 Authentication & User Management
+- **POST** :    /auth/signup          Register new user
+- **POST**  :   /auth/login           User login  Refresh JWT token
+- **POST**   : /auth/logout          User logout
+- **GET**     : /auth/profile         Get user profile
+- **PUT**     : /auth/profile         Update user profile
+## 💰 Expense Management Admin Role
+- **GET** :     /api/expenses         Get all expenses (with filters)
+- **POST** :    /api/expenses         Create expense (manual/AI)
+- **GET** :     /api/expenses/{id}    Get specific expense
+- **PUT** :     /api/expenses/{id}    Update expense (full)
+- **PATCH** :   /api/expenses/{id}    Update expense (partial)
+- **DELETE** :  /api/expenses/{id}    Delete expense
+- **PATCH** :   /api/expenses/{id}/disable  Disable expense
+## 💰 Expense Management User Role
+- **POST** :     /api/create-expenses   Create expense
+- **PUT** :     /api/create-expenses/{id}   Update expense (full)
+- **DELETE** :  /api/create-expenses/{id}   Delete expense
+- **PATCH** :   /api/create-expenses/{id}  Update expense (partial)
+
+## 📊 Analytics & Dashboard
+- **GET** :     /api/dashboard                Main dashboard data
+- **GET** :     /api/dashboard/history-pagination Paginated history
+
+## 🏷️ Category Management
+- **GET** :     /api/categories               Get all categories
+- **GET** :     /api/categories/active        Get active categories
+- **POST** :     /api/categories               Create category
+- **GET** :      /api/categories/{id}          Get specific category
+- **PUT** :      /api/categories/{id}          Update category
+- **DELETE** :   /api/categories/{id}          Delete category permanently
+- **DELETE** :   /api/categories/{id}/soft     Soft delete category
 
 ### 🔧 Technical Features
 - **Backend**: Spring Boot with RESTful APIs
